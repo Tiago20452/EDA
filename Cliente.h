@@ -1,16 +1,25 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
-typedef struct {
-    int NIF;
+typedef struct registo {
+    int Numero_fiscal;
+    int telefone;
     char nome[50];
     char email[50];
-    char telefone[20];
     char password[20];
+    struct registo* seguinte;
 } Cliente;
 
-Cliente* criar_cliente(int NIF, char* nome, char* email, char* telefone, char* password);
+Cliente* criar_cliente(Cliente* inicio, int NIF, int tel, char nome[], char email[], char password[]);
 
-void remover_cliente(Cliente* cliente);
+int existeCliente(Cliente* inicio, int Numero_fiscal);
+
+Cliente* remover_cliente(Cliente* inicio, int NIF);
+
+void listarClientes(Cliente* inicio);
+
+int guardarCliente(Cliente* inicio);
+
+Cliente* lerClientes();
 
 #endif // CLIENTE_H
