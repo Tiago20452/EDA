@@ -1,5 +1,6 @@
 #ifndef GESTOR_H
 #define GESTOR_H
+#include <stdio.h>
 
 typedef struct gestor {
     int identificacao;
@@ -16,6 +17,8 @@ Gestor* remover_gestor(Gestor* inicio, int id);
 
 void listarGestores(Gestor * inicio);
 
+Gestor * lerGestores();
 
+int guardarGestor(Gestor* inicio);
 
 #endif // GESTOR_H

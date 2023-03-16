@@ -1,5 +1,6 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
+#include <stdio.h>
 
 typedef struct registo {
     int Numero_fiscal;

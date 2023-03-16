@@ -78,3 +78,21 @@ Gestor * lerGestores()
     return(aux);
 }
 
+//Guardar Gestor
+int guardarGestor(Gestor* inicio)
+{FILE* fp;
+ fp = fopen("gestores.txt","w");
+ if (fp!=NULL)
+ {
+ Gestor* aux = inicio;
+ while (aux != NULL)
+ {
+  fprintf(fp,"%d;%s;%s\n", aux->identificacao, aux->nome, aux->senha);
+  aux = aux->seguinte;
+ }
+ fclose(fp);
+ return(1);
+ }
+ else return(0);
+}
+
