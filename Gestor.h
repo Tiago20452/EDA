@@ -1,16 +1,21 @@
 #ifndef GESTOR_H
 #define GESTOR_H
 
-typedef struct {
-    int id;
+typedef struct gestor {
+    int identificacao;
     char nome[50];
-    char email[50];
-    char telefone[20];
     char senha[20];
+    struct gestor* seguinte;
 } Gestor;
 
-Gestor* criar_gestor(int id, char* nome, char* email, char* telefone, char* senha);
+Gestor* criar_gestor(Gestor* inicio, int id , char nome[], char senha[]);
 
-void remover_gestor(Gestor* gestor);
+int existeGestor(Gestor* inicio, int identificacao);
+
+Gestor* remover_gestor(Gestor* inicio, int id);
+
+void listarGestores(Gestor * inicio);
+
+
 
 #endif // GESTOR_H

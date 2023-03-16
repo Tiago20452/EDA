@@ -19,6 +19,7 @@ Cliente* criar_cliente(Cliente* inicio, int NIF, int tel, char nome[], char emai
  } else return(inicio);
 }
 
+
 // Determinar existência do 'codigo' na lista ligada 'inicio'
 int existeCliente(Cliente* inicio, int NIF)
 {while(inicio!=NULL)
@@ -63,6 +64,7 @@ void listarClientes(Cliente * inicio)
  }
 }
 
+
 // Ler clientes
 Cliente* lerClientes()
 {
@@ -74,7 +76,7 @@ Cliente* lerClientes()
     fp = fopen("clientes.txt", "r");
     if (fp != NULL) {
         while (fscanf(fp, "%d;%d;%[^,],%[^,],%[^\n]\n", &NIF, &telefone, nome, email, password) == 5) {
-            aux = inserirMeio(aux, NIF, telefone, nome, email, password);
+            aux = criar_cliente(aux, NIF, telefone, nome, email, password);
         }
         fclose(fp);
     }
