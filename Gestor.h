@@ -1,5 +1,3 @@
-#ifndef GESTOR_H
-#define GESTOR_H
 #include <stdio.h>
 
 typedef struct gestor {
@@ -21,4 +19,4 @@ Gestor * lerGestores();
 
 int guardarGestor(Gestor* inicio);
 
-#endif // GESTOR_H
+

@@ -1,5 +1,3 @@
-#ifndef CLIENTE_H
-#define CLIENTE_H
 #include <stdio.h>
 
 typedef struct registo {
@@ -23,4 +21,4 @@ int guardarCliente(Cliente* inicio);
 
 Cliente* lerClientes();
 
-#endif // CLIENTE_H
+

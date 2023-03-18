@@ -1,19 +1,18 @@
-#ifndef MOBILIDADE_H
-#define MOBILIDADE_H
 #include <stdio.h>
 
-typedef struct mobilidade {
+typedef struct meio {
     int codigo;
     char tipo[50];
-    char localizacao[50]; // cidade
+    float longitude; 
+    float latitude;
     float bateria;
     float autonomia;
-    struct mobilidade* seguinte;
+    struct meio* seguinte;
 } Mobilidade;
 
-Mobilidade* criar_mobilidade(Mobilidade* inicio, int cod , char tipo[], char localizacao[], float bat, float aut);
+Mobilidade* criarmobilidade(Mobilidade* inicio, int cod, char tipo[], float longi, float lat, float bat, float aut);
 
-int existeMobilidade(Mobilidade* inicio, int codigo);
+int existeMobilidade(Mobilidade* inicio, int cod);
 
 Mobilidade* remover_mobilidade(Mobilidade* inicio, int cod);
 
@@ -21,4 +20,8 @@ void listarMobilidades(Mobilidade * inicio);
 
 Mobilidade * lerMobilidades();
 
-#endif // MOBILIDADE_H
+int guardarMobilidade(Mobilidade* inicio);
+
+
+
+
