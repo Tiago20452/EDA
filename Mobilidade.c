@@ -63,7 +63,7 @@ void listarMobilidades(Mobilidade * inicio)
 }
 
 // Ler Mobilidades
-/* Mobilidade * lerMobilidades()
+Mobilidade * lerMobilidades()
 {
     FILE* fp;
     int cod;
@@ -75,36 +75,11 @@ void listarMobilidades(Mobilidade * inicio)
     if (fp != NULL) 
     {while (!feof(fp))
      { fscanf(fp, "%d;%[^\n]s;%f;%f;%f;%f\n", &cod, tipo, &longi, &lat, &bat, &aut);
-       aux = criarmobilidade(aux, 1, "bicicleta", 9.7654, 89.654, 75, 100);
-       aux = criarmobilidade(aux, 2, "trotinete", 67.654, 56.789, 86, 67);
-       aux = criarmobilidade(aux, 3, "patins", 32.890, 65.444, 34, 78);
+       aux = criarmobilidade(aux, cod, tipo, longi, lat, bat, aut);
      }
         fclose(fp);
     }
     return(aux);
-}
-*/
-
-Mobilidade * lerMobilidades()
-{
-    FILE* fp;
-    int cod;
-    char tipo[50];
-    float bat, aut, longi, lat;
-    Mobilidade* aux = NULL;
-
-    fp = fopen("mobilidades.txt", "r");
-    if (fp != NULL) 
-    {
-        while (fscanf(fp, "%d;%[^;];%f;%f;%f;%f\n", &cod, tipo, &longi, &lat, &bat, &aut) == 6)
-        {
-            aux = criarmobilidade(aux, 1, "bicicleta", 9.7654, 89.654, 75, 100);
-            aux = criarmobilidade(aux, 2, "trotinete", 67.654, 56.789, 86, 67);
-            aux = criarmobilidade(aux, 3, "patins", 32.890, 65.444, 34, 78);
-        }
-        fclose(fp);
-    }
-    return aux;
 }
 
 //Guardar Mobilidade

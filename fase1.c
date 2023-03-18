@@ -2,8 +2,9 @@
 #include "cliente.h"
 #include "gestor.h"
 #include "mobilidade.h"
+#include "aluguer.h"
 
-int menu()
+int menuMobilidade()
 {
  int op;
  printf("M E N U\n");
