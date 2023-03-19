@@ -100,3 +100,20 @@ int guardarMobilidade(Mobilidade* inicio)
  else return(0);
 }
 
+int guardarMobilidade_Bin(Mobilidade *inicio)
+{
+    FILE *fp;
+    fp = fopen("mobilidades.bin", "wb");
+    if (fp != NULL)
+    {
+        Mobilidade *aux = inicio;
+        while (aux != NULL)
+        {
+            fwrite(aux, sizeof(Mobilidade), 1, fp);
+            aux = aux->seguinte;
+        }
+        fclose(fp);
+        return (1);
+    }
+    return (0);
+}

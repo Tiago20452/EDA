@@ -4,6 +4,75 @@
 #include "mobilidade.h"
 #include "aluguer.h"
 
+int menuPrincipal()
+{
+ 	int opPrincipal;
+ 	printf("MENU PRINCIPAL\n");
+ 	printf("1 - Gestor\n");
+ 	printf("2 - Cliente\n");
+ 	printf("0 - Sair\n");
+ 	printf("Escolha uma opcao:\n");
+ 	scanf("%d", &opPrincipal);
+
+ 	return (opPrincipal);
+}
+
+int menuGestor_REGLOG()
+{
+	int opGestor_REGLOG;
+	printf(" 1 - Registar novo gestor\n");
+	printf(" 2 - Login \n");
+	printf(" 0 - Voltar");
+	printf(" Escolher opcao: ");
+	scanf("%d", &opGestor_REGLOG);
+
+	return (opGestor_REGLOG);
+}
+
+int menuRegistoGestor()
+{
+	int opRegistoGestor;
+	printf(" 1 - Inserir dados\n");
+	printf(" 2 - Listar dados\n");
+	printf(" 3 - Guardar dados\n");
+	printf(" 0 - Retornar");
+	scanf("%d", &opRegistoGestor);
+
+	return (opRegistoGestor);
+}
+
+int menuGestor()
+{
+	int opGestor;
+	printf(" 1 - Criar novo meio de mobilidade\n");
+	printf(" 2 - Guardar meios adicionados\n");
+	printf(" 3 - Listar meios existentes\n");
+	printf(" 4 - Remover meio");
+	printf(" 5 - Alterar informações de meio");
+	printf(" 5 - Listar clientes registados");
+	printf(" 6 - Remover cliente");
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 int menuMobilidade()
 {
  int op;
@@ -54,3 +123,4 @@ int main()
   }
  } while (op!=0);
 }
+*/

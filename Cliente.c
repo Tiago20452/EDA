@@ -87,19 +87,32 @@ Cliente* lerClientes()
 
 // Guarda os Clientes num ficheiro txt
 int guardarCliente(Cliente* inicio)
-{FILE* fp;
+{  FILE* fp;
  fp = fopen("clientes.txt","w");
  if (fp!=NULL)
- {
- Cliente* aux = inicio;
- while (aux != NULL)
- {
-  fprintf(fp,"%d;%d;%s;%s;%s\n", aux->Numero_fiscal, aux->telefone, aux->nome, aux->email, aux->password);
-  aux = aux->seguinte;
- }
- fclose(fp);
- return(1);
- }
+    {
+        Cliente* aux = inicio;
+         while (aux != NULL)
+            {
+                fprintf(fp,"%d;%d;%s;%s;%s\n", aux->Numero_fiscal, aux->telefone, aux->nome, aux->email, aux->password);
+                aux = aux->seguinte;
+            }
+                fclose(fp);
+        return(1);
+    }
  else return(0);
 }
 
+
+Cliente* loginCliente(Cliente *inicio, int NIF)
+{
+  while (inicio != NULL)
+  {
+    if (inicio->Numero_fiscal, NIF == 0)
+     {
+      return (inicio);
+     }
+    inicio = inicio->seguinte;
+  }
+    return 0;
+}

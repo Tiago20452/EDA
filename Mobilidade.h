@@ -22,6 +22,6 @@ Mobilidade * lerMobilidades();
 
 int guardarMobilidade(Mobilidade* inicio);
 
-
+int guardarMobilidade_Bin(Mobilidade* inicio); 
 
 

@@ -96,3 +96,15 @@ int guardarGestor(Gestor* inicio)
  else return(0);
 }
 
+Gestor* loginGestor(Gestor *inicio, int id)
+{
+  while (inicio != NULL)
+  {
+    if (inicio->identificacao, id == 0)
+     {
+      return (inicio);
+     }
+    inicio = inicio->seguinte;
+  }
+    return 0;
+}
