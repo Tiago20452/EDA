@@ -47,16 +47,58 @@ int menuGestor()
 	printf(" 1 - Criar novo meio de mobilidade\n");
 	printf(" 2 - Guardar meios adicionados\n");
 	printf(" 3 - Listar meios existentes\n");
-	printf(" 4 - Remover meio");
-	printf(" 5 - Alterar informações de meio");
-	printf(" 5 - Listar clientes registados");
-	printf(" 6 - Remover cliente");
+	printf(" 4 - Remover meio\n");
+	printf(" 5 - Alterar informações de meio\n");
+	prinft(" 6 - Ler meios\n");
+	printf(" 5 - Listar clientes registados\n");
+	printf(" 6 - Remover cliente\n");
+	printf(" 7 - Guardar informacoes de clientes\n");
+	scanf("%d", &opGestor);
 
-
-
+	return(opGestor);
 }
 
+int main()
+{
+	Gestor* gestores = NULL;
+	Mobilidade* meios = NULL;
+	Cliente* clientes = NULL;
 
+	int opPrincipal, opGestor_REGLOG, opRegistoGestor, opGestor;
+	int cod, NIF, tel, id; 
+	float longi, lat, bat, aut;
+	char tipo[50], nome[50], email[50], password[20], senha[20];
+
+	do
+	{
+		opPrincipal = menuPrincipal();
+		switch (opPrincipal)
+		{
+			case 1 : 
+					do
+					{
+						opGestor_REGLOG = menuGestor_REGLOG();
+						switch (opGestor_REGLOG)
+						{
+							case 1 :
+									
+							break;
+						
+						default:
+							break;
+						}
+					} while (opGestor_REGLOG != 0);
+					
+
+			break;
+		
+		default:
+			break;
+		}
+
+	} while (opPrincipal != 0);
+	
+}
 
 
 
@@ -73,21 +115,6 @@ int menuGestor()
 
 
 /*
-int menuMobilidade()
-{
- int op;
- printf("M E N U\n");
- printf("1 - Inserir Meio de mobilidade\n");
- printf("2 - Listar Meios de mobilidade\n");
- printf("3 - Remover Meio de mobilidade\n");
- printf("4 - Guardar Meios de Mobilidade inseridos\n");
- printf("5 - Ler Meios de mobilidade\n");
- printf("0 - Sair\n");
- printf("Escolha uma opcao:\n");
- scanf("%d",&op);
- return(op);
-}
-
 int main()
 {Mobilidade* meios = NULL; // Lista ligada vazia 
  int op, cod;
