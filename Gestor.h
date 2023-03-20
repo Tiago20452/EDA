@@ -19,4 +19,3 @@ Gestor * lerGestores();
 
 int guardarGestor(Gestor* inicio);
 
-Gestor* loginGestor(Gestor *inicio, int id);

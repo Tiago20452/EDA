@@ -104,15 +104,3 @@ int guardarCliente(Cliente* inicio)
 }
 
 
-Cliente* loginCliente(Cliente *inicio, int NIF)
-{
-  while (inicio != NULL)
-  {
-    if (inicio->Numero_fiscal, NIF == 0)
-     {
-      return (inicio);
-     }
-    inicio = inicio->seguinte;
-  }
-    return 0;
-}

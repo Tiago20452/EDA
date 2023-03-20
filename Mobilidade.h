@@ -3,14 +3,14 @@
 typedef struct meio {
     int codigo;
     char tipo[50];
-    float longitude; 
-    float latitude;
+    char geocodigo[50];
     float bateria;
     float autonomia;
     struct meio* seguinte;
 } Mobilidade;
 
-Mobilidade* criarmobilidade(Mobilidade* inicio, int cod, char tipo[], float longi, float lat, float bat, float aut);
+
+Mobilidade* criarmobilidade(Mobilidade* inicio, int cod, char tipo[], char geocodigo[], float bat, float aut);
 
 int existeMobilidade(Mobilidade* inicio, int cod);
 

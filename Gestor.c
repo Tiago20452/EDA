@@ -54,7 +54,7 @@ Gestor* remover_gestor(Gestor* inicio, int id)
 // listar na consola o conteúdo da lista ligada de Gestores
 void listarGestores(Gestor * inicio)
 {while (inicio != NULL)
- {printf("%d %s %s\n",inicio->identificacao, inicio->nome, inicio->nome, inicio->senha);
+ {printf("%d %s %s\n",inicio->identificacao, inicio->nome, inicio->senha);
   inicio = inicio->seguinte;
  }
 }
@@ -96,15 +96,4 @@ int guardarGestor(Gestor* inicio)
  else return(0);
 }
 
-Gestor* loginGestor(Gestor *inicio, int id)
-{
-  while (inicio != NULL)
-  {
-    if (inicio->identificacao, id == 0)
-     {
-      return (inicio);
-     }
-    inicio = inicio->seguinte;
-  }
-    return 0;
-}
+

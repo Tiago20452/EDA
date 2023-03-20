@@ -4,15 +4,14 @@
 #include <stdio.h>
 
 // Criar nova Mobilidade
-Mobilidade* criarmobilidade(Mobilidade* inicio, int cod, char tipo[], float longi, float lat, float bat, float aut) 
+Mobilidade* criarmobilidade(Mobilidade* inicio, int cod, char tipo[], char geocodigo[], float bat, float aut) 
 {
  if(!existeMobilidade(inicio, cod))
  {Mobilidade * novo = malloc(sizeof(struct meio));
   if (novo != NULL)
   {novo->codigo = cod;
    strcpy(novo->tipo,tipo);
-   novo->longitude = longi;
-   novo->latitude = lat;
+   strcpy(novo->geocodigo,geocodigo);
    novo->bateria = bat;
    novo->autonomia = aut;
    return (novo);
@@ -57,7 +56,7 @@ Mobilidade* remover_mobilidade(Mobilidade* inicio, int cod)
 // listar na consola o conteúdo da lista ligada de Mobilidades
 void listarMobilidades(Mobilidade * inicio)
 {while (inicio != NULL)
- {printf("%d %s %f %f %f %f\n",inicio->codigo, inicio->tipo, inicio->longitude, inicio->latitude, inicio->bateria, inicio->autonomia);
+ {printf("%d %s %s %.2f %.2f\n",inicio->codigo, inicio->tipo, inicio->geocodigo, inicio->bateria, inicio->autonomia);
   inicio = inicio->seguinte;
  }
 }
@@ -67,15 +66,15 @@ Mobilidade * lerMobilidades()
 {
     FILE* fp;
     int cod;
-    char tipo[50];
-    float bat, aut, longi, lat;
+    char tipo[50], geocodigo[50];
+    float bat, aut;
     Mobilidade* aux = NULL;
 
     fp = fopen("mobilidades.txt", "r");
     if (fp != NULL) 
     {while (!feof(fp))
-     { fscanf(fp, "%d;%[^\n]s;%f;%f;%f;%f\n", &cod, tipo, &longi, &lat, &bat, &aut);
-       aux = criarmobilidade(aux, cod, tipo, longi, lat, bat, aut);
+     { fscanf(fp, "%d;%[^\n]s;%[^\n]s;%f;%f\n", &cod, tipo, geocodigo, &bat, &aut);
+       aux = criarmobilidade(aux, cod, tipo, geocodigo, bat, aut);
      }
         fclose(fp);
     }
@@ -91,7 +90,7 @@ int guardarMobilidade(Mobilidade* inicio)
  Mobilidade* aux = inicio;
  while (aux != NULL)
  {
-  fprintf(fp,"%d;%s;%f;%f;%f;%f\n", aux->codigo, aux->tipo, aux->longitude, aux->latitude, aux->bateria, aux->autonomia);
+  fprintf(fp,"%d;%s;%s;%f;%f\n", aux->codigo, aux->tipo, aux->geocodigo, aux->bateria, aux->autonomia);
   aux = aux->seguinte;
  }
  fclose(fp);
