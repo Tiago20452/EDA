@@ -10,7 +10,7 @@ Cliente* criar_cliente(Cliente* inicio, int NIF, int tel, char nome[], char emai
  {Cliente * novo = malloc(sizeof(struct registo));
   if (novo != NULL)
   {novo->Numero_fiscal = NIF;
-   novo->telefone, tel;
+   novo->telefone = tel;
     strcpy(novo->nome, nome);
     strcpy(novo->email, email);
     strcpy(novo->password, password);

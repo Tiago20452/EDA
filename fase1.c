@@ -63,7 +63,7 @@ int menuCliente_REGLOG()
 {
 	int opCliente_REGLOG;
 	printf(" 1 - Registar novo cliente\n"); 
-	printf(" 2 - Login \n"); 
+	printf(" 2 - Login \n");                                  //estou aqui
 	printf(" 0 - Sair\n");
 	printf(" Escolher opcao: ");
 	scanf("%d", &opCliente_REGLOG);
@@ -241,10 +241,10 @@ int main()
 										{
 											case 1:
 													printf("Numero fiscal?\n");
-	   												scanf("%d",&NIF);
+	   												scanf("%d",&NIF); 
 													printf("Numero de telemovel?\n");
 	   												scanf("%d",&tel);
-	   												scanf("%*c"); 
+													scanf("%*c");
 	    											printf("Nome?\n");
 	    											scanf("%[^\n]s",nome);
 													getchar();
