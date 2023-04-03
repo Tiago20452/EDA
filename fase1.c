@@ -29,7 +29,7 @@ int menuGestor_REGLOG()
 	return (opGestor_REGLOG);
 }
 
-int menuRegistoGestor()     // feito
+int menuRegistoGestor()     
 {
 	int opRegistoGestor;
 	printf(" 1 - Inserir dados\n"); 
@@ -59,13 +59,51 @@ int menuGestor()
 	return(opGestor);
 }
 
+int menuCliente_REGLOG()
+{
+	int opCliente_REGLOG;
+	printf(" 1 - Registar novo cliente\n"); 
+	printf(" 2 - Login \n"); 
+	printf(" 0 - Sair\n");
+	printf(" Escolher opcao: ");
+	scanf("%d", &opCliente_REGLOG);
+
+	return (opCliente_REGLOG);
+}
+
+int menuRegistoCliente()     
+{
+	int opRegistoCliente;
+	printf(" 1 - Inserir dados\n"); 
+	printf(" 2 - Listar dados\n");  
+	printf(" 3 - Guardar dados\n"); 
+	printf(" 0 - Sair\n");
+	printf(" Escolher opcao: ");
+	scanf("%d", &opRegistoCliente);
+
+	return (opRegistoCliente);
+}
+
+int menuCliente()                                              
+{
+	int opCliente;
+	printf(" 1 - Listar meios existentes\n");     
+	printf(" 2 - Alugar meio\n");
+	printf(" 3 - Alterar informacoes de cliente\n"); 
+	printf(" 4 - Remover cliente atual\n") ;           
+	printf(" 0 - Sair\n");
+	scanf("%d", &opCliente);
+
+	return(opCliente);
+}
+
 int main()
 {
 	Gestor* gestores = NULL;
 	Mobilidade* meios = NULL;
 	Cliente* clientes = NULL;
 
-	int opPrincipal, opGestor_REGLOG, opRegistoGestor, opGestor;
+	int opPrincipal, opGestor_REGLOG, opRegistoGestor, opGestor, opCliente_REGLOG, opRegistoCliente, opCliente;
 	int cod, NIF, tel, id; 
 	float bat, aut;
 	char tipo[50], geocodigo[50], nome[50], email[50], password[20], senha[20];
@@ -75,7 +113,7 @@ int main()
 		opPrincipal = menuPrincipal();
 		switch (opPrincipal)
 		{
-			case 1 : 
+			case 1 :                                                                // GESTOR
 					do
 					{
 						opGestor_REGLOG = menuGestor_REGLOG();
@@ -189,6 +227,51 @@ int main()
 						}
 					} while (opGestor_REGLOG != 0);
 					
+			case 2 :															//CLIENTE
+					do
+					{
+						opCliente_REGLOG = menuCliente_REGLOG();
+						switch (opCliente_REGLOG)
+						{
+							case 1: 
+									do
+									{
+										opRegistoCliente = menuRegistoCliente();
+										switch (opRegistoCliente)
+										{
+											case 1:
+													printf("Numero fiscal?\n");
+	   												scanf("%d",&NIF);
+													printf("Numero de telemovel?\n");
+	   												scanf("%d",&tel);
+	   												scanf("%*c"); 
+	    											printf("Nome?\n");
+	    											scanf("%[^\n]s",nome);
+													getchar();
+													printf("Email?\n");
+	    											scanf("%[^\n]s",email);
+													getchar();
+	    											printf("Password?\n");
+	    											scanf("%[^\n]s",password);
+													getchar();
+
+														clientes = criar_cliente(clientes, NIF, tel, nome, email, password);
+											break;
+
+											case 2: listarClientes(clientes); break;
+											case 3: guardarCliente(clientes); break;
+										
+										default:
+											break;
+										}
+									} while (opRegistoCliente != 0);
+									
+							break;
+						
+						default:
+							break;
+						}
+					} while (opCliente_REGLOG != 0);
 
 			break;
 		
