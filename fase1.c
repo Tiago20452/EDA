@@ -89,8 +89,7 @@ int menuCliente()
 	int opCliente;
 	printf(" 1 - Listar meios existentes\n");     
 	printf(" 2 - Alugar meio\n");
-	printf(" 3 - Alterar informacoes de cliente\n"); 
-	printf(" 4 - Remover cliente atual\n") ;           
+	printf(" 3 - Alterar informacoes de cliente\n");            
 	printf(" 0 - Sair\n");
 	scanf("%d", &opCliente);
 
@@ -102,11 +101,13 @@ int main()
 	Gestor* gestores = NULL;
 	Mobilidade* meios = NULL;
 	Cliente* clientes = NULL;
+	Aluguer* alugueres = NULL;
 
 	int opPrincipal, opGestor_REGLOG, opRegistoGestor, opGestor, opCliente_REGLOG, opRegistoCliente, opCliente;
 	int cod, NIF, tel, id; 
 	float bat, aut;
 	char tipo[50], geocodigo[50], nome[50], email[50], password[20], senha[20];
+	time_t data;
 
 	do
 	{
@@ -125,7 +126,7 @@ int main()
 										opRegistoGestor = menuRegistoGestor();
 										switch (opRegistoGestor)
 										{
-											case 1 :                                   
+											case 1 :                                // Inserção de credenciais do novo gestor  
 													printf("Identificacao?\n");
 	   												scanf("%d",&id);
 	   												scanf("%*c"); 
@@ -139,13 +140,13 @@ int main()
 														gestores = criar_gestor(gestores,id,nome,senha);	
 													break;
 
-											case 2 : listarGestores(gestores); break;
-											case 3 : guardarGestor(gestores); break;
+											case 2 : listarGestores(gestores); break;     
+											case 3 : guardarGestor(gestores); break;      
 										
 										default:
 											break;
 										}
-									} while (opRegistoGestor != 0);
+									} while (opRegistoGestor != 0);                           // Regressa ao menu anterior
 								break;
 
 							case 2 :                                                          //LOGIN DE GESTOR
@@ -233,7 +234,7 @@ int main()
 						opCliente_REGLOG = menuCliente_REGLOG();
 						switch (opCliente_REGLOG)
 						{
-							case 1: 
+							case 1:                                            // REGISTO DE NOVO CLIENTE
 									do
 									{
 										opRegistoCliente = menuRegistoCliente();
@@ -268,6 +269,33 @@ int main()
 									
 							break;
 						
+							case 2 :
+									do
+									{
+										opCliente = menuCliente();
+										switch (opCliente)
+										{
+											case 1: listarMobilidades(meios);break;
+
+											case 2: 
+													printf("Insira o seu email:\n");
+													scanf("%[^\n]s",email);
+													getchar();
+													printf("Insira o codigo do meio de mobilidade que deseja alugar:\n");
+													scanf("%d", &cod);
+
+														alugueres = novo_aluguer(alugueres, email, cod, data);
+														guardarAluguer(alugueres);
+													break;
+
+										//	case 3: alterarcliente;
+								
+										default:
+											break;
+										}
+									} while (opCliente != 0);
+									
+							break;
 						default:
 							break;
 						}
