@@ -4,6 +4,7 @@
 #include "mobilidade.h"
 #include "aluguer.h"
 
+
 int menuPrincipal()
 {
  	int opPrincipal;
@@ -89,7 +90,7 @@ int menuCliente()
 	int opCliente;
 	printf(" 1 - Listar meios existentes\n");     
 	printf(" 2 - Alugar meio\n");
-	printf(" 3 - Alterar informacoes de cliente\n");            
+	printf(" 3 - Listar alugueres\n");            
 	printf(" 0 - Sair\n");
 	scanf("%d", &opCliente);
 
@@ -106,8 +107,8 @@ int main()
 	int opPrincipal, opGestor_REGLOG, opRegistoGestor, opGestor, opCliente_REGLOG, opRegistoCliente, opCliente;
 	int cod, NIF, tel, id; 
 	float bat, aut;
-	char tipo[50], geocodigo[50], nome[50], email[50], password[20], senha[20];
-	time_t data;
+	char tipo[50], geocodigo[50], nome[50], email[50], password[20], senha[20], data[50];
+	
 
 	do
 	{
@@ -270,31 +271,56 @@ int main()
 							break;
 						
 							case 2 :
-									do
+									/*
+									printf("Insira o seu NIF:\n");
+									scanf("%d", &NIF);
+									scanf("%*c");
+	    							printf("Insira a sua password:\n");
+	    							scanf("%[^\n]s",password);
+									getchar();
+
+									clientes = verificaCliente(clientes, NIF, password);
+
+									if (clientes == 1)
 									{
-										opCliente = menuCliente();
-										switch (opCliente)
+									*/
+										do
 										{
-											case 1: listarMobilidades(meios);break;
+											opCliente = menuCliente();
+											switch (opCliente)
+											{
+												case 1: listarMobilidades(meios);break;
 
-											case 2: 
-													printf("Insira o seu email:\n");
-													scanf("%[^\n]s",email);
-													getchar();
-													printf("Insira o codigo do meio de mobilidade que deseja alugar:\n");
-													scanf("%d", &cod);
+												case 2: 
+														scanf("%*c");
+														printf("Insira o seu email:\n");
+														scanf("%[^\n]s",email);
+														getchar();
+														printf("Insira o codigo do meio de mobilidade que deseja alugar:\n");
+														scanf("%d", &cod);
+														scanf("%*c");
+														printf("Insira a data atual:\n");
+														scanf("%[^\n]s",data);
+														getchar();
 
-														alugueres = novo_aluguer(alugueres, email, cod, data);
-														guardarAluguer(alugueres);
-													break;
+															alugueres = novo_aluguer(alugueres, email, cod, data);
+															guardarAluguer(alugueres);
+														break;
 
-										//	case 3: alterarcliente;
-								
-										default:
-											break;
-										}
-									} while (opCliente != 0);
+												case 3: listarAluguer(alugueres); break;
+											//	case 3: alterarcliente;
 									
+											default:
+												break;
+											}
+										} while (opCliente != 0);
+								/*	}
+									else
+									{
+										printf("Clinete nao encontrado!");
+										return menuCliente();
+									}
+								*/	
 							break;
 						default:
 							break;
@@ -311,60 +337,3 @@ int main()
 	
 }
 
-
-
-
-
-										/*printf("Insira o seu ID\n");
-										scanf("%d", &id1);
-										printf("Insira a sua senha\n");
-										scanf("%[^\n]s", senha1);
-										getchar();
-
-										printf("Bem vindo!");*/
-
-
-
-
-
-
-
-
-
-/*
-int main()
-{Mobilidade* meios = NULL; // Lista ligada vazia 
- int op, cod;
- float bat, aut, longi, lat;
- char tipo[50];
- do
- {
-  op = menu();
-  switch(op)
-  {case 1: 
-  		printf("Codigo?\n");
-	   	scanf("%d",&cod);
-	    scanf("%*c"); 
-	    printf("Tipo\n");
-	    scanf("%[^\n]s",tipo);
-	    printf("Nivel da bateria?\n");
-	    scanf("%f",&bat);
-	    printf("Autonomia\n");
-	    scanf("%f",&aut);
-		printf("Longitude??\n");
-	    scanf("%f",&longi);
-		printf("Latitude?\n");
-	    scanf("%f",&lat);
-           meios = criarmobilidade(meios,cod,tipo,longi,lat,bat,aut);
-	    break;
-   case 2: listarMobilidades(meios); break;
-   case 3: printf("Codigo do meio de mobilidade a remover?\n");
-	   scanf("%d",&cod);
-	   meios = remover_mobilidade(meios, cod);
-	   break;
-   case 4: guardarMobilidade(meios); break;
-   case 5: meios = lerMobilidades(); break;
-  }
- } while (op!=0);
-}
-*/

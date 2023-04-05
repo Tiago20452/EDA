@@ -21,6 +21,7 @@ int guardarCliente(Cliente* inicio);
 
 Cliente* lerClientes();
 
+int verificaCliente(Cliente* inicio, int NIF, char password[]);
 
 
 

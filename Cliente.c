@@ -104,3 +104,11 @@ int guardarCliente(Cliente* inicio)
 }
 
 
+int verificaCliente(Cliente* inicio, int NIF, char password[])
+{while(inicio!=NULL)
+  {if (inicio->Numero_fiscal == NIF && inicio->password == password) return(1);
+   inicio = inicio->seguinte;
+  }
+ return(0);
+}
+

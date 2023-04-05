@@ -2,19 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include <time.h>
 
 
-Aluguer* novo_aluguer(Aluguer* inicio, char email[], int cod, time_t data) 
+
+Aluguer* novo_aluguer(Aluguer* inicio, char email[], int cod, char data[]) 
 {
- Aluguer * novo = malloc(sizeof(struct aluguer));
+  
+  Aluguer * novo = malloc(sizeof(struct aluguer));
   if (novo != NULL)
   {
     strcpy(novo->email, email);
     novo->codigo = cod;
-    time(&data);
-    novo->data_aluguer = data;
-
+    strcpy(novo->data_atual, data);
 
    return (novo);
   } 
@@ -26,9 +25,11 @@ int guardarAluguer(Aluguer* inicio)
  if (fp!=NULL)
  {
  Aluguer* aux = inicio;
+ 
  while (aux != NULL)
  {
-  fprintf(fp,"%s;%d;%s\n", aux->email, aux->codigo, ctime(aux->data_aluguer));
+  
+  fprintf(fp,"%s;%d;%s\n", aux->email, aux->codigo, aux->data_atual);
   aux = aux->seguinte;
  }
  fclose(fp);
@@ -40,7 +41,7 @@ int guardarAluguer(Aluguer* inicio)
 void listarAluguer(Aluguer * inicio)
 
 {while (inicio != NULL)
- {printf("%s %d\n",inicio->email, inicio->codigo, inicio->data_aluguer);
+ {printf("%s %d %s\n",inicio->email, inicio->codigo, inicio->data_atual);
   inicio = inicio->seguinte;
  }
 }
