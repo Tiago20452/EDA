@@ -100,6 +100,7 @@ int menuCliente()
 int main()
 {
 	Gestor* gestores = NULL;
+	Gestor* gestoratual = NULL;
 	Mobilidade* meios = NULL;
 	Cliente* clientes = NULL;
 	Aluguer* alugueres = NULL;
@@ -151,84 +152,85 @@ int main()
 								break;
 
 							case 2 :                                                          //LOGIN DE GESTOR
+							        printf(" ****Login de Gestor ****\n");
+    								printf("Identificacao: ");
+    								scanf("%d", &id);
+									scanf("%*c"); 
+    								printf("Senha: ");
+    								scanf("%s", senha);
+									getchar();
+
+									gestoratual = gestor_login(gestores, id, senha);
+
+									if (gestoratual == 0)
+									{
 									do
 									{
-										/*
-										printf("Insira o seu ID: ");
-										scanf("%d", &id);
-										printf("Insira a sua senha: \n");
-										scanf("%[^\n]s", senha);
-										getchar();
-
-
-										if (lerGestores(id, senha))
+										
+										opGestor = menuGestor();
+										switch (opGestor)
 										{
-											printf(" Bem vindo %d", id);
-										}
-										 else
-										{
-											printf("Credenciais invalidas!");
-											return 0;
-										}
-										*/
-											opGestor = menuGestor();
-											switch (opGestor)
-											{
-												case 1: 
-														printf("Codigo?\n");
-	   													scanf("%d",&cod);
-	    												scanf("%*c"); 
-	   													printf("Tipo\n");
-	   													scanf("%[^\n]s",tipo);
-														getchar();
-	    												printf("Geocodigo?\n");
-	   													scanf("%[^\n]s",geocodigo);
-														getchar();
-														printf("Bateria?\n");
-	   													scanf("%f",&bat);
-														printf("Autonomia?\n");
-	   													scanf("%f",&aut);
+											case 1: 
+													printf("Codigo?\n");
+	   												scanf("%d",&cod);
+	    											scanf("%*c"); 
+	   												printf("Tipo\n");
+	   												scanf("%[^\n]s",tipo);
+													getchar();
+	    											printf("Geocodigo?\n");
+	   												scanf("%[^\n]s",geocodigo);
+													getchar();
+													printf("Bateria?\n");
+	   												scanf("%f",&bat);
+													printf("Autonomia?\n");
+	   												scanf("%f",&aut);
 
-           													meios = criarmobilidade(meios,cod,tipo,geocodigo,bat,aut);
-															guardarMobilidade(meios); 
-															guardarMobilidade_Bin(meios);
-												    	break;
+           												meios = criarmobilidade(meios,cod,tipo,geocodigo,bat,aut);
+														guardarMobilidade(meios); 
+														guardarMobilidade_Bin(meios);
+												    break;
 											
-												case 2:	listarMobilidades(meios); break;
-											//	case 3: alterarmobilidade; break;
+											case 2:	listarMobilidades(meios); break;
+										//	case 3: alterarmobilidade; break;
 
-												case 4: printf("Codigo do meio de mobilidade a remover?\n");
-	   													scanf("%d",&cod);
-	   														meios = remover_mobilidade(meios, cod);
-															guardarMobilidade(meios); 
-															guardarMobilidade_Bin(meios);
-	   													break;
+											case 4: printf("Codigo do meio de mobilidade a remover?\n");
+	   												scanf("%d",&cod);
+	   													meios = remover_mobilidade(meios, cod);
+														guardarMobilidade(meios); 
+														guardarMobilidade_Bin(meios);
+	   												break;
 
-												case 5: meios = lerMobilidades(); break;
-												case 6: listarClientes(clientes); break;
+											case 5: meios = lerMobilidades(); break;
+											case 6: listarClientes(clientes); break;
 
-												case 7: 
-														printf("Numero fiscal do cliente a remover?\n");
-	   													scanf("%d",&NIF);
+											case 7: 
+													printf("Numero fiscal do cliente a remover?\n");
+	   												scanf("%d",&NIF);
 
-	  														clientes = remover_cliente(clientes, NIF);
-															guardarCliente(clientes);
-	   													break;
+	  													clientes = remover_cliente(clientes, NIF);
+														guardarCliente(clientes);
+	   												break;
 
-												case 8: clientes = lerClientes(); break;
+											case 8: clientes = lerClientes(); break;
 
-											default:
-												break;
-											}
+										default:
+											break;
+										}
 										
 									} while (opGestor != 0);
+									
+									} else {
+										printf("Utilizador nao encontrado!\n");
+										return menuGestor_REGLOG();
+									}
+									
 								break;
 
 						default:
 							break;
 						}
 					} while (opGestor_REGLOG != 0);
-					
+			    break;
 			case 2 :															//CLIENTE
 					do
 					{

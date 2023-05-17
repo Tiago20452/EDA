@@ -19,3 +19,4 @@ Gestor * lerGestores();
 
 int guardarGestor(Gestor* inicio);
 
+Gestor* gestor_login(Gestor* inicio, int id, char senha[]);
