@@ -56,8 +56,9 @@ Mobilidade* remover_mobilidade(Mobilidade* inicio, int cod)
 // listar na consola o conteúdo da lista ligada de Mobilidades
 void listarMobilidades(Mobilidade * inicio)
 {while (inicio != NULL)
- {printf("%d %s %s %.2f %.2f\n",inicio->codigo, inicio->tipo, inicio->geocodigo, inicio->bateria, inicio->autonomia);
-  inicio = inicio->seguinte;
+ {
+    printf("Codigo:%d; Tipo:%s; Geocodigo:%s; Bateria:%.2f; Autonomia:%.2f\n",inicio->codigo, inicio->tipo, inicio->geocodigo, inicio->bateria, inicio->autonomia);
+    inicio = inicio->seguinte;
  }
 }
 
@@ -90,7 +91,7 @@ int guardarMobilidade(Mobilidade* inicio)
  Mobilidade* aux = inicio;
  while (aux != NULL)
  {
-  fprintf(fp,"%d;%s;%s;%f;%f\n", aux->codigo, aux->tipo, aux->geocodigo, aux->bateria, aux->autonomia);
+  fprintf(fp,"Codigo:%d; Tipo:%s; Geocodigo:%s; Bateria:%.2f; Autonomia:%.2f\n", aux->codigo, aux->tipo, aux->geocodigo, aux->bateria, aux->autonomia);
   aux = aux->seguinte;
  }
  fclose(fp);

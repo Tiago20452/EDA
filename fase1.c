@@ -8,11 +8,14 @@
 int menuPrincipal()
 {
  	int opPrincipal;
- 	printf("MENU PRINCIPAL\n");
+	printf("////////////////////////////////\n");
+ 	printf("\t MENU PRINCIPAL\n");
  	printf("1 - Gestor\n");         
  	printf("2 - Cliente\n");
  	printf("0 - Sair\n");
+	printf("////////////////////////////////\n");
  	printf("Escolha uma opcao: ");
+	
  	scanf("%d", &opPrincipal);
 
  	return (opPrincipal);
@@ -21,9 +24,12 @@ int menuPrincipal()
 int menuGestor_REGLOG()
 {
 	int opGestor_REGLOG;
+	printf("///////////////////////////////////\n");
+	printf("\t MENU GESTOR \n");
 	printf(" 1 - Registar novo gestor\n"); 
 	printf(" 2 - Login \n"); 
-	printf(" 0 - Sair\n");
+	printf(" 0 - Voltar ao menu anterior\n");
+	printf("///////////////////////////////////\n");
 	printf(" Escolher opcao: ");
 	scanf("%d", &opGestor_REGLOG);
 
@@ -33,10 +39,13 @@ int menuGestor_REGLOG()
 int menuRegistoGestor()     
 {
 	int opRegistoGestor;
+	printf("//////////////////////////////////////////////\n");
+	printf("\t MENU DE REGISTO GESTOR\n");
 	printf(" 1 - Inserir dados\n"); 
 	printf(" 2 - Listar dados\n");  
 	printf(" 3 - Guardar dados\n"); 
-	printf(" 0 - Sair\n");
+	printf(" 0 - Voltar ao menu anterior\n");
+	printf("//////////////////////////////////////////////\n");
 	printf(" Escolher opcao: ");
 	scanf("%d", &opRegistoGestor);
 
@@ -46,15 +55,19 @@ int menuRegistoGestor()
 int menuGestor()                                              
 {
 	int opGestor;
+	printf("/////////////////////////////////////////////\n");
+	printf("\t\t GESTOR \n");
 	printf(" 1 - Criar novo meio de mobilidade\n");     
 	printf(" 2 - Listar meios existentes\n");
-	printf(" 3 - Alterar informacoes de meio\n");             //em falta
+	printf(" 3 - Alterar informacoes de meio\n");             
 	printf(" 4 - Remover meio\n");
 	printf(" 5 - Ler meios\n");
 	printf(" 6 - Listar clientes registados\n");
 	printf(" 7 - Remover cliente\n");
 	printf(" 8 - Ler Clientes\n");
-	printf(" 0 - Sair\n");
+	printf(" 0 - Voltar ao menu anterior\n");
+	printf("/////////////////////////////////////////////\n");
+	printf(" Escolher opcao: ");
 	scanf("%d", &opGestor);
 
 	return(opGestor);
@@ -63,9 +76,12 @@ int menuGestor()
 int menuCliente_REGLOG()
 {
 	int opCliente_REGLOG;
+	printf("//////////////////////////////////////////////////\n");
+	printf("\t MENU REGISTO CLIENTE \n");
 	printf(" 1 - Registar novo cliente\n"); 
-	printf(" 2 - Login \n");                                  //estou aqui
-	printf(" 0 - Sair\n");
+	printf(" 2 - Login \n");                                 
+	printf(" 0 - Voltar ao menu anterior\n");
+	printf("/////////////////////////////////////////////////\n");
 	printf(" Escolher opcao: ");
 	scanf("%d", &opCliente_REGLOG);
 
@@ -75,10 +91,13 @@ int menuCliente_REGLOG()
 int menuRegistoCliente()     
 {
 	int opRegistoCliente;
+	printf("////////////////////////////////////////////////\n");
+	printf(" \t REGISTO NOVO CLIENTE \n");
 	printf(" 1 - Inserir dados\n"); 
 	printf(" 2 - Listar dados\n");  
 	printf(" 3 - Guardar dados\n"); 
-	printf(" 0 - Sair\n");
+	printf(" 0 - Voltar ao menu anterior\n");
+	printf("////////////////////////////////////////////////\n");
 	printf(" Escolher opcao: ");
 	scanf("%d", &opRegistoCliente);
 
@@ -88,10 +107,13 @@ int menuRegistoCliente()
 int menuCliente()                                              
 {
 	int opCliente;
+	printf("///////////////////////////////////////\n");
+	printf("\t CLIENTE  \n");
 	printf(" 1 - Listar meios existentes\n");     
 	printf(" 2 - Alugar meio\n");
 	printf(" 3 - Listar alugueres\n");            
-	printf(" 0 - Sair\n");
+	printf(" 0 - Voltar ao menu anterior\n");
+	printf("///////////////////////////////////////\n");
 	scanf("%d", &opCliente);
 
 	return(opCliente);
@@ -191,9 +213,35 @@ int main()
 												    break;
 											
 											case 2:	listarMobilidades(meios); break;
-										//	case 3: alterarmobilidade; break;
 
-											case 4: printf("Codigo do meio de mobilidade a remover?\n");
+											case 3: 
+													printf("Codigo de meio a alterar?\n");
+													scanf("%d", &cod);
+														meios = remover_mobilidade(meios, cod);
+
+													printf("Insira os novos dados do meio\n");
+
+													printf("Codigo?\n");
+	   												scanf("%d",&cod);
+	    											scanf("%*c"); 
+	   												printf("Tipo?\n");
+	   												scanf("%[^\n]s",tipo);
+													getchar();
+	    											printf("Geocodigo?\n");
+	   												scanf("%[^\n]s",geocodigo);
+													getchar();
+													printf("Bateria?\n");
+	   												scanf("%f",&bat);
+													printf("Autonomia?\n");
+	   												scanf("%f",&aut);
+
+           												meios = criarmobilidade(meios,cod,tipo,geocodigo,bat,aut);
+														guardarMobilidade(meios);
+													break;
+
+
+											case 4:
+													printf("Codigo do meio de mobilidade a remover?\n");
 	   												scanf("%d",&cod);
 	   													meios = remover_mobilidade(meios, cod);
 														guardarMobilidade(meios); 
@@ -273,19 +321,6 @@ int main()
 							break;
 						
 							case 2 :
-									/*
-									printf("Insira o seu NIF:\n");
-									scanf("%d", &NIF);
-									scanf("%*c");
-	    							printf("Insira a sua password:\n");
-	    							scanf("%[^\n]s",password);
-									getchar();
-
-									clientes = verificaCliente(clientes, NIF, password);
-
-									if (clientes == 1)
-									{
-									*/
 										do
 										{
 											opCliente = menuCliente();
@@ -316,13 +351,6 @@ int main()
 												break;
 											}
 										} while (opCliente != 0);
-								/*	}
-									else
-									{
-										printf("Clinete nao encontrado!");
-										return menuCliente();
-									}
-								*/	
 							break;
 						default:
 							break;

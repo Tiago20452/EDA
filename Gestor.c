@@ -7,9 +7,11 @@
 Gestor* criar_gestor(Gestor* inicio, int id , char nome[], char senha[]) 
 {
  if(!existeGestor(inicio, id))
- {Gestor * novo = malloc(sizeof(struct gestor));
+ {
+  Gestor * novo = malloc(sizeof(struct gestor));
   if (novo != NULL)
-  {novo->identificacao = id;
+  {
+    novo->identificacao = id;
     strcpy(novo->nome, nome);
     strcpy(novo->senha, senha);
     return (novo);
@@ -53,10 +55,12 @@ Gestor* remover_gestor(Gestor* inicio, int id)
 
 // listar na consola o conteúdo da lista ligada de Gestores
 void listarGestores(Gestor * inicio)
-{while (inicio != NULL)
- {printf("%d %s %s\n",inicio->identificacao, inicio->nome, inicio->senha);
-  inicio = inicio->seguinte;
- }
+{
+  while (inicio != NULL)
+  {
+    printf("ID Gestor:%d; Nome:%s; Senha:%s\n",inicio->identificacao, inicio->nome, inicio->senha);
+    inicio = inicio->seguinte;
+  }
 }
 
 // Ler Gestores
@@ -87,7 +91,7 @@ int guardarGestor(Gestor* inicio)
  Gestor* aux = inicio;
  while (aux != NULL)
  {
-  fprintf(fp,"%d;%s;%s\n", aux->identificacao, aux->nome, aux->senha);
+  fprintf(fp,"ID Gestor:%d; Nome:%s; Senha:%s\n", aux->identificacao, aux->nome, aux->senha);
   aux = aux->seguinte;
  }
  fclose(fp);

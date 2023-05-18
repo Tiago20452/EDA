@@ -20,7 +20,8 @@ Aluguer* novo_aluguer(Aluguer* inicio, char email[], int cod, char data[])
 } 
 
 int guardarAluguer(Aluguer* inicio)
-{FILE* fp;
+{
+ FILE* fp;
  fp = fopen("alugueres.txt","w");
  if (fp!=NULL)
  {
@@ -29,7 +30,7 @@ int guardarAluguer(Aluguer* inicio)
  while (aux != NULL)
  {
   
-  fprintf(fp,"%s;%d;%s\n", aux->email, aux->codigo, aux->data_atual);
+  fprintf(fp,"Email:%s;Codigo:%d;Data:%s\n", aux->email, aux->codigo, aux->data_atual);
   aux = aux->seguinte;
  }
  fclose(fp);
@@ -40,10 +41,12 @@ int guardarAluguer(Aluguer* inicio)
 
 void listarAluguer(Aluguer * inicio)
 
-{while (inicio != NULL)
- {printf("%s %d %s\n",inicio->email, inicio->codigo, inicio->data_atual);
+{
+  while (inicio != NULL)
+  {
+  printf("Email: %s; Codigo: %d; Data: %s\n",inicio->email, inicio->codigo, inicio->data_atual);
   inicio = inicio->seguinte;
- }
+  }
 }
 
 
