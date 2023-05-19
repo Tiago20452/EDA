@@ -14,6 +14,7 @@ Mobilidade* criarmobilidade(Mobilidade* inicio, int cod, char tipo[], char geoco
    strcpy(novo->geocodigo,geocodigo);
    novo->bateria = bat;
    novo->autonomia = aut;
+   novo->seguinte = inicio;
    return (novo);
   } 
  } else return(inicio);
@@ -57,7 +58,7 @@ Mobilidade* remover_mobilidade(Mobilidade* inicio, int cod)
 void listarMobilidades(Mobilidade * inicio)
 {while (inicio != NULL)
  {
-    printf("Codigo:%d; Tipo:%s; Geocodigo:%s; Bateria:%.2f; Autonomia:%.2f\n",inicio->codigo, inicio->tipo, inicio->geocodigo, inicio->bateria, inicio->autonomia);
+    printf("CODIGO:%d; TIPO:%s; GEOCODIGO:%s; BATERIA:%.2f; AUTONOMIA:%.2f\n",inicio->codigo, inicio->tipo, inicio->geocodigo, inicio->bateria, inicio->autonomia);
     inicio = inicio->seguinte;
  }
 }
@@ -91,7 +92,7 @@ int guardarMobilidade(Mobilidade* inicio)
  Mobilidade* aux = inicio;
  while (aux != NULL)
  {
-  fprintf(fp,"Codigo:%d; Tipo:%s; Geocodigo:%s; Bateria:%.2f; Autonomia:%.2f\n", aux->codigo, aux->tipo, aux->geocodigo, aux->bateria, aux->autonomia);
+  fprintf(fp,"CODIGO:%d; TIPO:%s; GEOCODIGO:%s; BATERIA:%.2f; AUTONOMIA:%.2f\n", aux->codigo, aux->tipo, aux->geocodigo, aux->bateria, aux->autonomia);
   aux = aux->seguinte;
  }
  fclose(fp);
@@ -116,4 +117,18 @@ int guardarMobilidade_Bin(Mobilidade *inicio)
         return (1);
     }
     return (0);
+}
+
+
+Mobilidade* listarMobilidadesPorGeocodigo(Mobilidade *inicio, char geocodigo[]) 
+{
+    while (inicio != NULL) 
+    {
+        if (strcmp(inicio->geocodigo, geocodigo) == 0) 
+        {
+            printf("Codigo: %d; Tipo: %s; Geocodigo: %s; Bateria: %.2f; Autonomia: %.2f\n",
+                   inicio->codigo, inicio->tipo, inicio->geocodigo, inicio->bateria, inicio->autonomia);
+        }
+        inicio = inicio->seguinte;
+    }
 }

@@ -14,7 +14,7 @@ Aluguer* novo_aluguer(Aluguer* inicio, char email[], int cod, char data[])
     strcpy(novo->email, email);
     novo->codigo = cod;
     strcpy(novo->data_atual, data);
-
+    novo->seguinte = inicio;
    return (novo);
   } 
 } 
@@ -30,7 +30,7 @@ int guardarAluguer(Aluguer* inicio)
  while (aux != NULL)
  {
   
-  fprintf(fp,"Email:%s;Codigo:%d;Data:%s\n", aux->email, aux->codigo, aux->data_atual);
+  fprintf(fp,"EMAIL:%s;CODIGO:%d;DATA:%s\n", aux->email, aux->codigo, aux->data_atual);
   aux = aux->seguinte;
  }
  fclose(fp);
@@ -40,11 +40,10 @@ int guardarAluguer(Aluguer* inicio)
 }
 
 void listarAluguer(Aluguer * inicio)
-
 {
   while (inicio != NULL)
   {
-  printf("Email: %s; Codigo: %d; Data: %s\n",inicio->email, inicio->codigo, inicio->data_atual);
+  printf("EMAIL: %s; CODIGO: %d; DATA: %s\n",inicio->email, inicio->codigo, inicio->data_atual);
   inicio = inicio->seguinte;
   }
 }

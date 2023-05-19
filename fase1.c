@@ -8,12 +8,12 @@
 int menuPrincipal()
 {
  	int opPrincipal;
-	printf("////////////////////////////////\n");
+	printf("///////////////////////////////\n");
  	printf("\t MENU PRINCIPAL\n");
  	printf("1 - Gestor\n");         
  	printf("2 - Cliente\n");
  	printf("0 - Sair\n");
-	printf("////////////////////////////////\n");
+	printf("///////////////////////////////\n");
  	printf("Escolha uma opcao: ");
 	
  	scanf("%d", &opPrincipal);
@@ -24,12 +24,12 @@ int menuPrincipal()
 int menuGestor_REGLOG()
 {
 	int opGestor_REGLOG;
-	printf("///////////////////////////////////\n");
+	printf("////////////////////////////////////\n");
 	printf("\t MENU GESTOR \n");
 	printf(" 1 - Registar novo gestor\n"); 
 	printf(" 2 - Login \n"); 
 	printf(" 0 - Voltar ao menu anterior\n");
-	printf("///////////////////////////////////\n");
+	printf("////////////////////////////////////\n");
 	printf(" Escolher opcao: ");
 	scanf("%d", &opGestor_REGLOG);
 
@@ -39,13 +39,14 @@ int menuGestor_REGLOG()
 int menuRegistoGestor()     
 {
 	int opRegistoGestor;
-	printf("//////////////////////////////////////////////\n");
+	printf("//////////////////////////////////////////////////\n");
 	printf("\t MENU DE REGISTO GESTOR\n");
 	printf(" 1 - Inserir dados\n"); 
 	printf(" 2 - Listar dados\n");  
 	printf(" 3 - Guardar dados\n"); 
+	printf(" 4 - Inserir valores aleatorios\n");
 	printf(" 0 - Voltar ao menu anterior\n");
-	printf("//////////////////////////////////////////////\n");
+	printf("//////////////////////////////////////////////////\n");
 	printf(" Escolher opcao: ");
 	scanf("%d", &opRegistoGestor);
 
@@ -65,6 +66,8 @@ int menuGestor()
 	printf(" 6 - Listar clientes registados\n");
 	printf(" 7 - Remover cliente\n");
 	printf(" 8 - Ler Clientes\n");
+	printf(" 9 - Listar meios por geocodigo\n");
+	printf(" 10 - Inserir meios de valores aleatorios\n");
 	printf(" 0 - Voltar ao menu anterior\n");
 	printf("/////////////////////////////////////////////\n");
 	printf(" Escolher opcao: ");
@@ -81,7 +84,7 @@ int menuCliente_REGLOG()
 	printf(" 1 - Registar novo cliente\n"); 
 	printf(" 2 - Login \n");                                 
 	printf(" 0 - Voltar ao menu anterior\n");
-	printf("/////////////////////////////////////////////////\n");
+	printf("//////////////////////////////////////////////////\n");
 	printf(" Escolher opcao: ");
 	scanf("%d", &opCliente_REGLOG);
 
@@ -91,13 +94,14 @@ int menuCliente_REGLOG()
 int menuRegistoCliente()     
 {
 	int opRegistoCliente;
-	printf("////////////////////////////////////////////////\n");
+	printf("//////////////////////////////////////////////////\n");
 	printf(" \t REGISTO NOVO CLIENTE \n");
 	printf(" 1 - Inserir dados\n"); 
 	printf(" 2 - Listar dados\n");  
 	printf(" 3 - Guardar dados\n"); 
+	printf("//////////////////////////////////////////////////\n");
 	printf(" 0 - Voltar ao menu anterior\n");
-	printf("////////////////////////////////////////////////\n");
+
 	printf(" Escolher opcao: ");
 	scanf("%d", &opRegistoCliente);
 
@@ -107,13 +111,16 @@ int menuRegistoCliente()
 int menuCliente()                                              
 {
 	int opCliente;
-	printf("///////////////////////////////////////\n");
-	printf("\t CLIENTE  \n");
+	printf("//////////////////////////////////////////////");
+	printf("\t\t CLIENTE  \n");
 	printf(" 1 - Listar meios existentes\n");     
 	printf(" 2 - Alugar meio\n");
-	printf(" 3 - Listar alugueres\n");            
+	printf(" 3 - Listar alugueres\n");   
+	printf(" 4 - Inserir valores aleatorios de clientes");       
 	printf(" 0 - Voltar ao menu anterior\n");
-	printf("///////////////////////////////////////\n");
+	printf("//////////////////////////////////////////////");
+
+	printf(" Escolher opcao: ");
 	scanf("%d", &opCliente);
 
 	return(opCliente);
@@ -161,11 +168,18 @@ int main()
 	    											scanf("%[^\n]s",senha);
 													getchar();
 
-														gestores = criar_gestor(gestores,id,nome,senha);	
+														gestores = criar_gestor(gestores,id,nome,senha); // adiciona o gestor à lista ligada
 													break;
 
-											case 2 : listarGestores(gestores); break;     
-											case 3 : guardarGestor(gestores); break;      
+											case 2 : listarGestores(gestores); break;     // lista os gestores contidos na lista ligada
+											case 3 : guardarGestor(gestores); break;      // guarda a informação dos gestores num ficheiro.txt
+
+											case 4 :                                                              //cria automaticamente gestores com as informações
+													gestores = criar_gestor(gestores,1234,"Tiago","HFGJTY");      
+													gestores = criar_gestor(gestores,5678,"Pedro","IOPFDS");
+													gestores = criar_gestor(gestores,9865,"Antunes","YOPDWFG"); 
+													guardarGestor(gestores);
+													break;
 										
 										default:
 											break;
@@ -173,7 +187,7 @@ int main()
 									} while (opRegistoGestor != 0);                           // Regressa ao menu anterior
 								break;
 
-							case 2 :                                                          //LOGIN DE GESTOR
+							case 2 :                                                          //LOGIN e MENU DE GESTOR
 							        printf(" ****Login de Gestor ****\n");
     								printf("Identificacao: ");
     								scanf("%d", &id);
@@ -184,7 +198,7 @@ int main()
 
 									gestoratual = gestor_login(gestores, id, senha);
 
-									if (gestoratual == 0)
+									if (gestoratual == 0)                                     // Confirma as credenciais de Gestor
 									{
 									do
 									{
@@ -192,7 +206,7 @@ int main()
 										opGestor = menuGestor();
 										switch (opGestor)
 										{
-											case 1: 
+											case 1: 										// criação de um novo meio
 													printf("Codigo?\n");
 	   												scanf("%d",&cod);
 	    											scanf("%*c"); 
@@ -214,7 +228,7 @@ int main()
 											
 											case 2:	listarMobilidades(meios); break;
 
-											case 3: 
+											case 3: 													// alteração do meio da lista ligada
 													printf("Codigo de meio a alterar?\n");
 													scanf("%d", &cod);
 														meios = remover_mobilidade(meios, cod);
@@ -240,7 +254,7 @@ int main()
 													break;
 
 
-											case 4:
+											case 4:															// remoção do meio da lista ligada
 													printf("Codigo do meio de mobilidade a remover?\n");
 	   												scanf("%d",&cod);
 	   													meios = remover_mobilidade(meios, cod);
@@ -251,7 +265,7 @@ int main()
 											case 5: meios = lerMobilidades(); break;
 											case 6: listarClientes(clientes); break;
 
-											case 7: 
+											case 7:                                                       // remoção de cliente da lista ligada
 													printf("Numero fiscal do cliente a remover?\n");
 	   												scanf("%d",&NIF);
 
@@ -261,6 +275,20 @@ int main()
 
 											case 8: clientes = lerClientes(); break;
 
+											case 9: 													 // procura de um meio por geocodigo
+													printf("Qual o geocodigo que pretente procurar?\n");
+													scanf("%s", geocodigo);
+													getchar();
+														meios = listarMobilidadesPorGeocodigo(meios, geocodigo);
+													break;
+											
+											case 10:
+													meios = criarmobilidade(meios,1,"Trotinete","Braga",78.00,89.00);
+													meios = criarmobilidade(meios,2,"Bicicleta","Porto",55.00,80.00);
+													meios = criarmobilidade(meios,3,"Trotinete","Braga",40.00,75.00);
+													meios = criarmobilidade(meios,4,"Bicicleta","Braga",18.00,30.00);
+
+											
 										default:
 											break;
 										}
@@ -312,7 +340,13 @@ int main()
 
 											case 2: listarClientes(clientes); break;
 											case 3: guardarCliente(clientes); break;
-										
+
+											case 4: 
+													clientes = criar_cliente(clientes, 123456777, 931234568, "Joao", "joao@gmail.com", "JOAO123");
+													clientes = criar_cliente(clientes, 123456888, 923456789, "Maria", "maria@hotmail.com", "MARIA123");
+													clientes = criar_cliente(clientes, 123456999, 965345678, "Manuel", "manuel@sapo.pt", "MANUEL123");
+													guardarCliente(clientes);
+													break;
 										default:
 											break;
 										}
@@ -345,7 +379,6 @@ int main()
 														break;
 
 												case 3: listarAluguer(alugueres); break;
-											//	case 3: alterarcliente;
 									
 											default:
 												break;

@@ -7,17 +7,17 @@
 Cliente* criar_cliente(Cliente* inicio, int NIF, int tel, char nome[], char email[], char password[]) 
 {
  if(!existeCliente(inicio, NIF))
- {
-    Cliente * novo = malloc(sizeof(struct registo));
-    if (novo != NULL)
-    {
+ {Cliente * novo = malloc(sizeof(struct registo));
+  if (novo != NULL)
+  {
      novo->Numero_fiscal = NIF;
      novo->telefone = tel;
      strcpy(novo->nome, nome);
      strcpy(novo->email, email);
      strcpy(novo->password, password);
+     novo->seguinte = inicio;
      return (novo);
-    } 
+  } 
  } else return(inicio);
 }
 
@@ -67,10 +67,10 @@ Cliente* remover_cliente(Cliente* inicio, int NIF)
 void listarClientes(Cliente * inicio)
 {
  while (inicio != NULL)
-    {
-        printf("NIF:%d; Telemovel:%d; Nome:%s; Email:%s; Password:%s\n",inicio->Numero_fiscal, inicio->telefone, inicio->nome, inicio->email, inicio ->password);
-        inicio = inicio->seguinte;
-    }
+ {
+   printf("NIF:%d; TELEFONE:%d: NOME:%s; EMAIL:%s; PASSWORD:%s\n",inicio->Numero_fiscal, inicio->telefone, inicio->nome, inicio->email, inicio ->password);
+   inicio = inicio->seguinte;
+ }
 }
 
 // Ler clientes
@@ -99,16 +99,17 @@ int guardarCliente(Cliente* inicio)
  FILE* fp;
  fp = fopen("clientes.txt","w");
  if (fp!=NULL)
-    {
-        Cliente* aux = inicio;
-         while (aux != NULL)
-            {
-                fprintf(fp,"NIF:%d; Telefone:%d; NOme:%s; Email:%s; Password:%s\n", aux->Numero_fiscal, aux->telefone, aux->nome, aux->email, aux->password);
-                aux = aux->seguinte;
-            }
-                fclose(fp);
-        return(1);
-    }
+ {
+  Cliente* aux = inicio;
+  while (aux != NULL)
+  {
+    fprintf(fp,"NIF:%d; TELEFONE:%d; NOME:%s; EMAIL:%s; PASSWORD:%s\n", aux->Numero_fiscal, aux->telefone, aux->nome, aux->email, aux->password);
+
+    aux = aux->seguinte;
+  }
+  fclose(fp);
+  return(1);
+  }
  else return(0);
 }
 

@@ -25,3 +25,4 @@ int guardarMobilidade(Mobilidade* inicio);
 int guardarMobilidade_Bin(Mobilidade* inicio); 
 
 
+Mobilidade* listarMobilidadesPorGeocodigo(Mobilidade *inicio, char geocodigo[]);

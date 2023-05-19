@@ -14,6 +14,7 @@ Gestor* criar_gestor(Gestor* inicio, int id , char nome[], char senha[])
     novo->identificacao = id;
     strcpy(novo->nome, nome);
     strcpy(novo->senha, senha);
+    novo->seguinte = inicio;
     return (novo);
   } 
  } else return(inicio);
@@ -55,11 +56,9 @@ Gestor* remover_gestor(Gestor* inicio, int id)
 
 // listar na consola o conteúdo da lista ligada de Gestores
 void listarGestores(Gestor * inicio)
-{
-  while (inicio != NULL)
-  {
-    printf("ID Gestor:%d; Nome:%s; Senha:%s\n",inicio->identificacao, inicio->nome, inicio->senha);
-    inicio = inicio->seguinte;
+{while (inicio != NULL)
+  {printf("ID:%d; NOME:%s; SENHA:%s\n",inicio->identificacao, inicio->nome, inicio->senha);
+   inicio = inicio->seguinte;
   }
 }
 
@@ -91,7 +90,7 @@ int guardarGestor(Gestor* inicio)
  Gestor* aux = inicio;
  while (aux != NULL)
  {
-  fprintf(fp,"ID Gestor:%d; Nome:%s; Senha:%s\n", aux->identificacao, aux->nome, aux->senha);
+  fprintf(fp,"ID:%d; NOME:%s; SENHA:%s\n", aux->identificacao, aux->nome, aux->senha);
   aux = aux->seguinte;
  }
  fclose(fp);
