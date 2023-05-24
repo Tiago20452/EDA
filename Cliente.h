@@ -21,7 +21,7 @@ int guardarCliente(Cliente* inicio);
 
 Cliente* lerClientes();
 
-
+Cliente* cliente_login(Cliente* inicio, int NIF, char password[]);
 
 
 

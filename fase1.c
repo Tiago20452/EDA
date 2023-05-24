@@ -13,7 +13,7 @@ int menuPrincipal()
  	printf("1 - Gestor\n");         
  	printf("2 - Cliente\n");
  	printf("0 - Sair\n");
-	printf("///////////////////////////////\n");
+	printf("///////////////////////////////\n\n");
  	printf("Escolha uma opcao: ");
 	
  	scanf("%d", &opPrincipal);
@@ -29,7 +29,7 @@ int menuGestor_REGLOG()
 	printf(" 1 - Registar novo gestor\n"); 
 	printf(" 2 - Login \n"); 
 	printf(" 0 - Voltar ao menu anterior\n");
-	printf("////////////////////////////////////\n");
+	printf("////////////////////////////////////\n\n");
 	printf(" Escolher opcao: ");
 	scanf("%d", &opGestor_REGLOG);
 
@@ -46,7 +46,7 @@ int menuRegistoGestor()
 	printf(" 3 - Guardar dados\n"); 
 	printf(" 4 - Inserir valores aleatorios\n");
 	printf(" 0 - Voltar ao menu anterior\n");
-	printf("//////////////////////////////////////////////////\n");
+	printf("//////////////////////////////////////////////////\n\n");
 	printf(" Escolher opcao: ");
 	scanf("%d", &opRegistoGestor);
 
@@ -69,7 +69,7 @@ int menuGestor()
 	printf(" 9 - Listar meios por geocodigo\n");
 	printf(" 10 - Inserir meios de valores aleatorios\n");
 	printf(" 0 - Voltar ao menu anterior\n");
-	printf("/////////////////////////////////////////////\n");
+	printf("/////////////////////////////////////////////\n\n");
 	printf(" Escolher opcao: ");
 	scanf("%d", &opGestor);
 
@@ -84,7 +84,7 @@ int menuCliente_REGLOG()
 	printf(" 1 - Registar novo cliente\n"); 
 	printf(" 2 - Login \n");                                 
 	printf(" 0 - Voltar ao menu anterior\n");
-	printf("//////////////////////////////////////////////////\n");
+	printf("//////////////////////////////////////////////////\n\n");
 	printf(" Escolher opcao: ");
 	scanf("%d", &opCliente_REGLOG);
 
@@ -99,9 +99,8 @@ int menuRegistoCliente()
 	printf(" 1 - Inserir dados\n"); 
 	printf(" 2 - Listar dados\n");  
 	printf(" 3 - Guardar dados\n"); 
-	printf("//////////////////////////////////////////////////\n");
 	printf(" 0 - Voltar ao menu anterior\n");
-
+	printf("//////////////////////////////////////////////////\n\n");
 	printf(" Escolher opcao: ");
 	scanf("%d", &opRegistoCliente);
 
@@ -111,14 +110,14 @@ int menuRegistoCliente()
 int menuCliente()                                              
 {
 	int opCliente;
-	printf("//////////////////////////////////////////////");
+	printf("//////////////////////////////////////////////\n");
 	printf("\t\t CLIENTE  \n");
 	printf(" 1 - Listar meios existentes\n");     
 	printf(" 2 - Alugar meio\n");
 	printf(" 3 - Listar alugueres\n");   
-	printf(" 4 - Inserir valores aleatorios de clientes");       
+	printf(" 4 - Inserir valores aleatorios de clientes\n");       
 	printf(" 0 - Voltar ao menu anterior\n");
-	printf("//////////////////////////////////////////////");
+	printf("//////////////////////////////////////////////\n\n");
 
 	printf(" Escolher opcao: ");
 	scanf("%d", &opCliente);
@@ -164,7 +163,7 @@ int main()
 	    											printf("Nome?\n");
 	    											scanf("%[^\n]s",nome);
 													getchar();
-	    											printf("Senha?\n");
+	    											printf("Senha?\n\n");
 	    											scanf("%[^\n]s",senha);
 													getchar();
 
@@ -200,6 +199,7 @@ int main()
 
 									if (gestores != NULL )                                     // Confirma as credenciais de Gestor
 									{
+										printf("\tBEM VINDO %d!\n", id);
 										do
 										{
 										
@@ -218,7 +218,7 @@ int main()
 														getchar();
 														printf("Bateria?\n");
 	   													scanf("%f",&bat);
-														printf("Autonomia?\n");
+														printf("Autonomia?\n\n");
 	   													scanf("%f",&aut);
 
            													meios = criarmobilidade(meios,cod,tipo,geocodigo,bat,aut);
@@ -247,7 +247,7 @@ int main()
 														printf("Bateria?\n");
 	   													scanf("%f",&bat);
 														printf("Autonomia?\n");
-	   													scanf("%f",&aut);
+	   													scanf("%f\n",&aut);
 
            													meios = criarmobilidade(meios,cod,tipo,geocodigo,bat,aut);
 															guardarMobilidade(meios);
@@ -288,7 +288,7 @@ int main()
 														meios = criarmobilidade(meios,3,"Trotinete","Braga",40.00,75.00);
 														meios = criarmobilidade(meios,4,"Bicicleta","Braga",18.00,30.00);
 														guardarMobilidade(meios); 
-											
+														break;
 											default:
 												break;
 											}
@@ -296,7 +296,7 @@ int main()
 										} while (opGestor != 0);
 									
 									} else {
-										printf("Utilizador nao encontrado!\n");
+										printf("Utilizador nao encontrado!\n\n");
 									}
 								break;
 						default:
@@ -329,7 +329,7 @@ int main()
 	    											scanf("%[^\n]s",email);
 													getchar();
 	    											printf("Password?\n");
-	    											scanf("%[^\n]s",password);
+	    											scanf("%[^\n]s\n",password);
 													getchar();
 
 														clientes = criar_cliente(clientes, NIF, tel, nome, email, password);
@@ -352,6 +352,19 @@ int main()
 							break;
 						
 							case 2 :
+									printf(" ****Login de Gestor ****\n");
+    								printf("Numero Fiscal: ");
+    								scanf("%d", &NIF);
+									scanf("%*c"); 
+    								printf("Password: ");
+    								scanf("%s", password);
+									getchar();
+
+									clientes = cliente_login(clientes, NIF, password);
+
+									if (clientes != NULL )                                     // Confirma as credenciais do Cliente
+									{
+										printf("\tBEM VINDO %d!\n", NIF);
 										do
 										{
 											opCliente = menuCliente();
@@ -368,7 +381,7 @@ int main()
 														scanf("%d", &cod);
 														scanf("%*c");
 														printf("Insira a data atual:\n");
-														scanf("%[^\n]s",data);
+														scanf("%[^\n]s\n",data);
 														getchar();
 
 															alugueres = novo_aluguer(alugueres, email, cod, data);
@@ -381,6 +394,11 @@ int main()
 												break;
 											}
 										} while (opCliente != 0);
+
+									} else {
+										printf("Utilizador nao encontrado!\n\n");
+									}
+									
 							break;
 						default:
 							break;

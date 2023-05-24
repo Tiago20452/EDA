@@ -92,7 +92,6 @@ Cliente* lerClientes()
     return(aux);
 }
 
-
 // Guarda os Clientes num ficheiro txt
 int guardarCliente(Cliente* inicio)
 { 
@@ -113,3 +112,16 @@ int guardarCliente(Cliente* inicio)
  else return(0);
 }
 
+//Verifica se existe o cliente
+Cliente* cliente_login(Cliente* inicio, int NIF, char password[]) 
+{
+    while (inicio != NULL) 
+    {
+        if (inicio->Numero_fiscal == NIF && strcmp(inicio->password, password) == 0) 
+            return (inicio);
+
+        inicio = inicio->seguinte;
+    }
+    
+    return (NULL);
+}
