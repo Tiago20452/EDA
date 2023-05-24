@@ -80,7 +80,7 @@ int menuCliente_REGLOG()
 {
 	int opCliente_REGLOG;
 	printf("//////////////////////////////////////////////////\n");
-	printf("\t MENU REGISTO CLIENTE \n");
+	printf("\t MENU CLIENTE \n");
 	printf(" 1 - Registar novo cliente\n"); 
 	printf(" 2 - Login \n");                                 
 	printf(" 0 - Voltar ao menu anterior\n");
@@ -287,7 +287,7 @@ int main()
 													meios = criarmobilidade(meios,2,"Bicicleta","Porto",55.00,80.00);
 													meios = criarmobilidade(meios,3,"Trotinete","Braga",40.00,75.00);
 													meios = criarmobilidade(meios,4,"Bicicleta","Braga",18.00,30.00);
-
+													guardarMobilidade(meios); 
 											
 										default:
 											break;
