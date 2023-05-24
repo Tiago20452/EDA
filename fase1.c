@@ -280,6 +280,7 @@ int main()
 														scanf("%s", geocodigo);
 														getchar();
 															meios = listarMobilidadesPorGeocodigo(meios, geocodigo);
+
 														break;
 											
 												case 10:

@@ -120,15 +120,19 @@ int guardarMobilidade_Bin(Mobilidade *inicio)
 }
 
 
-Mobilidade* listarMobilidadesPorGeocodigo(Mobilidade *inicio, char geocodigo[]) 
+Mobilidade* listarMobilidadesPorGeocodigo(Mobilidade* inicio, char geocodigo[])
 {
-    while (inicio != NULL) 
+    Mobilidade* atual = inicio;
+
+    while (atual != NULL)
     {
-        if (strcmp(inicio->geocodigo, geocodigo) == 0) 
+        if (strcmp(atual->geocodigo, geocodigo) == 0)
         {
             printf("Codigo: %d; Tipo: %s; Geocodigo: %s; Bateria: %.2f; Autonomia: %.2f\n",
-                   inicio->codigo, inicio->tipo, inicio->geocodigo, inicio->bateria, inicio->autonomia);
+                   atual->codigo, atual->tipo, atual->geocodigo, atual->bateria, atual->autonomia);
         }
-        inicio = inicio->seguinte;
+        atual = atual->seguinte;
     }
+
+    return (inicio);
 }
