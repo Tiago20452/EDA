@@ -102,13 +102,13 @@ int guardarGestor(Gestor* inicio)
 
 Gestor* gestor_login(Gestor* inicio, int id, char senha[]) 
 {
-  while (inicio != NULL) 
-  {
-      if ((inicio->identificacao, id) == 0 && strcmp(inicio->senha, senha) == 0) 
-      {
-        return (inicio);
-      }
+    while (inicio != NULL) 
+    {
+        if (inicio->identificacao == id && strcmp(inicio->senha, senha) == 0) 
+            return inicio;
+
         inicio = inicio->seguinte;
-  }
-  return 0;
+    }
+    
+    return NULL;
 }

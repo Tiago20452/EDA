@@ -196,112 +196,109 @@ int main()
     								scanf("%s", senha);
 									getchar();
 
-									gestoratual = gestor_login(gestores, id, senha);
+									gestores = gestor_login(gestores, id, senha);
 
-									if (gestoratual == 0)                                     // Confirma as credenciais de Gestor
+									if (gestores != NULL )                                     // Confirma as credenciais de Gestor
 									{
-									do
-									{
-										
-										opGestor = menuGestor();
-										switch (opGestor)
+										do
 										{
-											case 1: 										// criação de um novo meio
-													printf("Codigo?\n");
-	   												scanf("%d",&cod);
-	    											scanf("%*c"); 
-	   												printf("Tipo\n");
-	   												scanf("%[^\n]s",tipo);
-													getchar();
-	    											printf("Geocodigo?\n");
-	   												scanf("%[^\n]s",geocodigo);
-													getchar();
-													printf("Bateria?\n");
-	   												scanf("%f",&bat);
-													printf("Autonomia?\n");
-	   												scanf("%f",&aut);
-
-           												meios = criarmobilidade(meios,cod,tipo,geocodigo,bat,aut);
-														guardarMobilidade(meios); 
-														guardarMobilidade_Bin(meios);
-												    break;
-											
-											case 2:	listarMobilidades(meios); break;
-
-											case 3: 													// alteração do meio da lista ligada
-													printf("Codigo de meio a alterar?\n");
-													scanf("%d", &cod);
-														meios = remover_mobilidade(meios, cod);
-
-													printf("Insira os novos dados do meio\n");
-
-													printf("Codigo?\n");
-	   												scanf("%d",&cod);
-	    											scanf("%*c"); 
-	   												printf("Tipo?\n");
-	   												scanf("%[^\n]s",tipo);
-													getchar();
-	    											printf("Geocodigo?\n");
-	   												scanf("%[^\n]s",geocodigo);
-													getchar();
-													printf("Bateria?\n");
-	   												scanf("%f",&bat);
-													printf("Autonomia?\n");
-	   												scanf("%f",&aut);
-
-           												meios = criarmobilidade(meios,cod,tipo,geocodigo,bat,aut);
-														guardarMobilidade(meios);
-													break;
-
-
-											case 4:															// remoção do meio da lista ligada
-													printf("Codigo do meio de mobilidade a remover?\n");
-	   												scanf("%d",&cod);
-	   													meios = remover_mobilidade(meios, cod);
-														guardarMobilidade(meios); 
-														guardarMobilidade_Bin(meios);
-	   												break;
-
-											case 5: meios = lerMobilidades(); break;
-											case 6: listarClientes(clientes); break;
-
-											case 7:                                                       // remoção de cliente da lista ligada
-													printf("Numero fiscal do cliente a remover?\n");
-	   												scanf("%d",&NIF);
-
-	  													clientes = remover_cliente(clientes, NIF);
-														guardarCliente(clientes);
-	   												break;
-
-											case 8: clientes = lerClientes(); break;
-
-											case 9: 													 // procura de um meio por geocodigo
-													printf("Qual o geocodigo que pretente procurar?\n");
-													scanf("%s", geocodigo);
-													getchar();
-														meios = listarMobilidadesPorGeocodigo(meios, geocodigo);
-													break;
-											
-											case 10:
-													meios = criarmobilidade(meios,1,"Trotinete","Braga",78.00,89.00);
-													meios = criarmobilidade(meios,2,"Bicicleta","Porto",55.00,80.00);
-													meios = criarmobilidade(meios,3,"Trotinete","Braga",40.00,75.00);
-													meios = criarmobilidade(meios,4,"Bicicleta","Braga",18.00,30.00);
-													guardarMobilidade(meios); 
-											
-										default:
-											break;
-										}
 										
-									} while (opGestor != 0);
+											opGestor = menuGestor();
+											switch (opGestor)
+											{
+												case 1: 										// criação de um novo meio
+														printf("Codigo?\n");
+	   													scanf("%d",&cod);
+	    												scanf("%*c"); 
+	   													printf("Tipo\n");
+	   													scanf("%[^\n]s",tipo);
+														getchar();
+	    												printf("Geocodigo?\n");
+	   													scanf("%[^\n]s",geocodigo);
+														getchar();
+														printf("Bateria?\n");
+	   													scanf("%f",&bat);
+														printf("Autonomia?\n");
+	   													scanf("%f",&aut);
+
+           													meios = criarmobilidade(meios,cod,tipo,geocodigo,bat,aut);
+															guardarMobilidade(meios); 
+															guardarMobilidade_Bin(meios);
+													break;
+											
+												case 2:	listarMobilidades(meios); break;
+
+												case 3: 													// alteração do meio da lista ligada
+														printf("Codigo de meio a alterar?\n");
+														scanf("%d", &cod);
+															meios = remover_mobilidade(meios, cod);
+
+														printf("Insira os novos dados do meio\n");
+
+														printf("Codigo?\n");
+	   													scanf("%d",&cod);
+	    												scanf("%*c"); 
+	   													printf("Tipo?\n");
+	   													scanf("%[^\n]s",tipo);
+														getchar();
+	    												printf("Geocodigo?\n");
+	   													scanf("%[^\n]s",geocodigo);
+														getchar();
+														printf("Bateria?\n");
+	   													scanf("%f",&bat);
+														printf("Autonomia?\n");
+	   													scanf("%f",&aut);
+
+           													meios = criarmobilidade(meios,cod,tipo,geocodigo,bat,aut);
+															guardarMobilidade(meios);
+														break;
+
+
+												case 4:															// remoção do meio da lista ligada
+														printf("Codigo do meio de mobilidade a remover?\n");
+	   													scanf("%d",&cod);
+	   														meios = remover_mobilidade(meios, cod);
+															guardarMobilidade(meios); 
+															guardarMobilidade_Bin(meios);
+	   													break;
+
+												case 5: meios = lerMobilidades(); break;
+												case 6: listarClientes(clientes); break;
+
+												case 7:                                                       // remoção de cliente da lista ligada
+														printf("Numero fiscal do cliente a remover?\n");
+	   													scanf("%d",&NIF);
+
+	  														clientes = remover_cliente(clientes, NIF);
+															guardarCliente(clientes);
+	   													break;
+
+												case 8: clientes = lerClientes(); break;
+
+												case 9: 													 // procura de um meio por geocodigo
+														printf("Qual o geocodigo que pretente procurar?\n");
+														scanf("%s", geocodigo);
+														getchar();
+															meios = listarMobilidadesPorGeocodigo(meios, geocodigo);
+														break;
+											
+												case 10:
+														meios = criarmobilidade(meios,1,"Trotinete","Braga",78.00,89.00);
+														meios = criarmobilidade(meios,2,"Bicicleta","Porto",55.00,80.00);
+														meios = criarmobilidade(meios,3,"Trotinete","Braga",40.00,75.00);
+														meios = criarmobilidade(meios,4,"Bicicleta","Braga",18.00,30.00);
+														guardarMobilidade(meios); 
+											
+											default:
+												break;
+											}
+										
+										} while (opGestor != 0);
 									
 									} else {
 										printf("Utilizador nao encontrado!\n");
-										return menuGestor_REGLOG();
 									}
-									
 								break;
-
 						default:
 							break;
 						}
