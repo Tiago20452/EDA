@@ -5,58 +5,67 @@
 
 // Criar um novo vértice
 // Devolve 1 em caso de sucesso ou 0 caso contrário
-int criarVertice(Grafo *g, char novoId[])
+int criarVertice(Grafo *g, int novoVId)
 {
     Grafo novo = malloc(sizeof(struct registo1));
     if (novo!=NULL)
     {
-        strcpy(novo->vertice,novoId);
-        novo->meios = NULL;
+        novo->vertice = novoVId;
         novo->seguinte = *g;
         *g = novo;
-    return(1);
+
+        return(1);
     }
  else return(0);
 }
 
-int criarAresta(Grafo g, char vOrigem[], char vDestino[], float peso)
+int existeVertice(Grafo g, int vertice)
+{while (g!=NULL)
+ {
+    if (strcmp(g->vertice,vertice)==0) 
+    return(1);
+
+    else g=g->seguinte;
+ }
+ return(0);
+}
+
+int criarAresta(Grafo g, int vORIGEM, int vDESTINO, float peso)
 {
     Adjacente novo;
-    if (existeVertice(g,vOrigem) && existeVertice(g,vDestino))
+    if (existeVertice(g,vORIGEM) && existeVertice(g,vDESTINO))
     {
-        while(strcmp(g->vertice,vOrigem)!=0) 
+        while(g->vertice != vORIGEM)
         g=g->seguinte;
         novo = malloc(sizeof(struct registo1));
-            if (novo!=NULL)
-	        {
-                strcpy(novo->vertice,vDestino);
-	            novo->peso = peso;
-	            novo->seguinte=g->adjacentes;
-	            g->adjacentes=novo;
 
-	            return(1);
-	        }
+        if (novo!=NULL)
+	    {   
+            novo->vertice = vDESTINO;
+	        novo->peso = peso;
+	        novo->seguinte=g->adjacentes;
+	        g->adjacentes=novo;
+	        return(1);
+	    }
         else return(0);
     }
-    else return(0);
+ else return(0);
 }
 
-// Inserir meio de transporte na localização com geocódigo passado por parâmetro
-// Devolve 1 em caso de sucesso ou 0 caso contrário
-int inserirMeio(Grafo g, char geocodigo[], int codigoMeio)
+void listarAdjacentes(Grafo g, int vertice)
 {
- while ((g!=NULL)&&(strcmp(g->vertice,geocodigo)!=0))
-
-	g=g->seguinte;
-    if (g==NULL) 
-    return(0);
-
-    else 
+    Adjacente aux;
+    if (existeVertice(g,vertice))
     {
-        Meios novo = malloc(sizeof(struct registo3));
-        novo->codigo = codigoMeio;
-        novo->seguinte = g->meios;
-        g->meios = novo;
-        return(1);	 
+        while (g->vertice != vertice) 
+        g=g->seguinte;
+        aux = g->adjacentes;
+
+        while (aux!=NULL) 
+        {
+            printf("Adjacente:%d Peso:%.2f\n", aux->vertice, aux->peso);
+            aux=aux->seguinte;
+        }
     }
 }
+

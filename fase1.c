@@ -3,6 +3,7 @@
 #include "gestor.h"
 #include "mobilidade.h"
 #include "aluguer.h"
+#include "grafo.h"
 
 
 int menuPrincipal()
@@ -128,16 +129,26 @@ int menuCliente()
 int main()
 {
 	Gestor* gestores = NULL;
-	Gestor* gestoratual = NULL;
 	Mobilidade* meios = NULL;
 	Cliente* clientes = NULL;
 	Aluguer* alugueres = NULL;
+	Grafo g = NULL;
 
 	int opPrincipal, opGestor_REGLOG, opRegistoGestor, opGestor, opCliente_REGLOG, opRegistoCliente, opCliente;
 	int cod, NIF, tel, id; 
 	float bat, aut;
 	char tipo[50], geocodigo[50], nome[50], email[50], password[20], senha[20], data[50];
 	
+	criarVertice(&g,"///thesaurus.sharers.blizzards");
+ 	criarVertice(&g,"///dimly.nuttier.pitch");
+ 	criarVertice(&g,"///babbled.trifling.consoled");
+ 	criarAresta(g,"///thesaurus.sharers.blizzards","///babbled.trifling.consoled",100);
+ 	criarAresta(g,"///thesaurus.sharers.blizzards","///dimly.nuttier.pitch",150);
+
+ 	inserirMeio(g,"///dimly.nuttier.pitch",100);
+ 	inserirMeio(g,"///dimly.nuttier.pitch",101);
+ 	inserirMeio(g,"///dimly.nuttier.pitch",102);
+ 	inserirMeio(g,"///babbled.trifling.consoled",200);
 
 	do
 	{
